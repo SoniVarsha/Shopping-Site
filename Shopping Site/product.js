@@ -106,66 +106,16 @@ alt="image loading error">`;
 
 }
 
-function addDataIntoList(productData) {
 
-  // If Local Storage Is Empty Then Set List To Empty
-if (window.localStorage.getItem("product-list") === null) {
-  myCartData = [];
-}
-// If Local Storage Is Not Empty Then Set List To Value Of Local Storage
-else {
-  myCartData = JSON.parse(window.localStorage.getItem("product-list"));
-}
-// If List Is Empty Then Push The Object In It
-if (myCartData.length === 0) {
-var myObj = {
-  id: productData.id,
-  title: productData.name,
-  count: 1,
-  price: productData.price,
-  preview: productData.preview
-};
-myCartData.push(myObj);
-console.log(myCartData)
-
-}
-// If List Is Not Empty Then
-else if (myCartData.length != 0) {
-var w = 0;
-// If Same Product Data == True Then List.Count++
-for (var i = 0; i < myCartData.length; i++) {
-  if (myCartData[i].id == productData.id) {
-    myCartData[i].count = parseInt(myCartData[i].count) + 1;
-    w += 1;
-
-  }
-}
-// Else Add New Data Into List
-if (w == 0) {
-  var myObj = {
-    id: productData.id,
-    title: productData.name,
-    count: 1,
-    price: productData.price,
-    preview: productData.preview
-  };
-  myCartData.push(myObj);
-  console.log(myCartData)
-}
-}
-// Store The List Into Local Storage
-console.log(myCartData)
-window.localStorage.setItem("product-list", JSON.stringify(myCartData));
-}
 
 
 function onSubmit(){
   addToCart()
-  addDataIntoList(productData)
+
 }
 
 
-//adding click usig jquery and handler
+
  
   btn.addEventListener('click',onSubmit)
 
